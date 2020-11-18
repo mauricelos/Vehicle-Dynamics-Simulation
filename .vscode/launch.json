@@ -1,0 +1,302 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Vehicle Dynamics Simulation Debugging",
+            "preLaunchTask": "build_vehicle_dynamics_simulation_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": ["--race", "vehicle_specifications/mazda_rx8_8HP70.yaml", "vehicle_specifications/mazda_rx8_8HP70_boosted.yaml"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/vehicle_dynamics_simulation.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/vehicle_dynamics_simulation",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/vehicle_dynamics_simulation",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Engine Test Debugging",
+            "preLaunchTask": "build_engine_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/engine_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/engine_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/engine_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Transmission Test Debugging",
+            "preLaunchTask": "build_transmission_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/transmission_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/transmission_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/transmission_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Vehicle Specification Parser Test Debugging",
+            "preLaunchTask": "build_vehicle_specification_parser_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/vehicle_specification_parser_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/vehicle_specification_parser_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/vehicle_specification_parser_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Utils Test Debugging",
+            "preLaunchTask": "build_utils_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/utils_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/utils_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/utils_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Vehicle Test Debugging",
+            "preLaunchTask": "build_vehicle_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/vehicle_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/vehicle_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/vehicle_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Vehicle Stats Test Debugging",
+            "preLaunchTask": "build_vehicle_stats_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/vehicle_stats_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/vehicle_stats_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/vehicle_stats_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Vehicle Logger Test Debugging",
+            "preLaunchTask": "build_vehicle_logger_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/vehicle_logger_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/vehicle_logger_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/vehicle_logger_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "Vehicle Model Test Debugging",
+            "preLaunchTask": "build_vehicle_model_test_debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "windows": {
+                "type": "cppvsdbg",
+                "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/vehicle_model_test.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/vehicle_model_test",
+            },
+            "osx": {
+                "type": "cppdbg",
+                "MIMode": "lldb",
+                "program": "${workspaceFolder}/bazel-out/darwin-dbg/bin/vehicle_model_test",
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+    ]
+}

@@ -1,0 +1,7 @@
+bazel-bin/
+bazel-vehicle_dynamics_simulation/
+bazel-out/
+bazel-testlogs/
+deployment/**
+.gitignore
+.DS_Store

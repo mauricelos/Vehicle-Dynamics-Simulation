@@ -16,10 +16,9 @@ jobs:
       - name: Checkout submodules
         run: git submodule update --init --recursive
       - name: gcc
-        run: |
-          gcc --version
+        run: 
         shell: bash
       - name: Use bazel
         run: ./bazelisk/bazelisk.py --version
       - name: Run tests
-        run: ./bazelisk/bazelisk.py test :all
+        run: ./bazelisk/bazelisk.py test :all --action_env CC=/usr/bin/gcc-8

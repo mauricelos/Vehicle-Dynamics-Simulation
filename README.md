@@ -6,21 +6,21 @@
 
 - **Linux** (tested with Ubuntu 18.04)
     - [`gcc/g++`](https://gcc.gnu.org/install/) (tested with _8.4.0_, needs C++17 filesystem support)
-    - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.7.0_)
+    - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.7.0_)(_**optional**_, bazelisk can also be used)
     - [`clang-format`](https://releases.llvm.org/download.html) (tested with _6.0.0_, default Ubuntu 18.04)
     - [`git`](https://git-scm.com/downloads) (tested with _2.17.1_)
 
 - **Windows** (tested with Windows 10 1903)
     - [`Windows developer mode`](https://docs.microsoft.com/de-de/windows/apps/get-started/enable-your-device-for-development) needs to be enabled for experimental symlink support 
     - [`MSVC`](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) (tested with _v142_ toolset, needs C++17 filesystem support)
-    - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.4.1_)
+    - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.4.1_)(_**optional**_, bazelisk can also be used)
     - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)
     - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)
     - [`7-Zip`](https://www.7-zip.de/) (tested with _19.00_)
 
 - **MacOS** (tested with Catalina 10.15.7 and Big Sur 11.0.1)
     - [`XCode Command Line Tools/Apple clang`](https://developer.apple.com/xcode/resources/) (tested with _12.0.0_, needs C++17 filesystem support)
-    - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.7.0_)
+    - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.7.0_)(_**optional**_, bazelisk can also be used)
     - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)
     - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)
 ___
@@ -81,7 +81,7 @@ ___
 
 ### Usage with Bazel commands
 
-This project is using bazel as its compiler tool. Bazel can be used to compile/run and test the code as well. Here are some examples for useful bazel commands:
+This project is using bazel/bazelisk as its compiler tool. Bazel can be used to compile/run and test the code as well. Here are some examples for useful bazel commands:
 
 ```
 bazel run :vehicle_dynamics_simulation    -> For running the main executable
@@ -90,6 +90,15 @@ bazel test :<specific unit test>          -> To run only a certain test
 bazel clean                               -> For cleaning up
 bazel build :all                          -> To build all targets
 bazel build :<specific target>            -> To build only a certain target
+
+or
+
+./bazelisk/bazelisk.py run :vehicle_dynamics_simulation    -> For running the main executable
+./bazelisk/bazelisk.py test :all                           -> To run all tests
+./bazelisk/bazelisk.py test :<specific unit test>          -> To run only a certain test
+./bazelisk/bazelisk.py clean                               -> For cleaning up
+./bazelisk/bazelisk.py build :all                          -> To build all targets
+./bazelisk/bazelisk.py build :<specific target>            -> To build only a certain target
 ```
 
 **Caution: Windows users** will need to use ```--experimental_enable_runfiles``` for some targets including ```vehicle_dynamics_simulation``` binary

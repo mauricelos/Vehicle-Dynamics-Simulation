@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - '*'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup bazel
+        uses: jwlawson/actions-setup-bazel@v1
+      - name: Use bazel
+        run: bazel --version
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: bazel test :all

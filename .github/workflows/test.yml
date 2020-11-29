@@ -18,4 +18,4 @@ jobs:
       - name: Use bazel
         run: ./bazelisk/bazelisk.py --version
       - name: Run tests
-        run: ./bazelisk/bazelisk.py test :all --action_env CC=/usr/bin/gcc-8
+        run: ./bazelisk/bazelisk.py test :all --action_env CC=/usr/bin/gcc-8 --test_output=all --runs_per_test=3

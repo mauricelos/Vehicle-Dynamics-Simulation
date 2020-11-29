@@ -23,7 +23,7 @@ if [[ $machine == "MinGw" || $machine == "Cygwin" ]]; then
         echo "Skip Buildifier"
     else
         echo "Run Buildifier"
-        bazel build //:buildifier 2>/dev/null && .vscode/windows_scripts/run_buildifier.sh
+        ./bazelisk/bazelisk.py build //:buildifier 2>/dev/null && .vscode/windows_scripts/run_buildifier.sh && git submodule foreach git reset --hard
     fi
     if [ -z "$unstaged_changes_source_code" ]; then
         echo "Skip clang format"
@@ -32,7 +32,7 @@ if [[ $machine == "MinGw" || $machine == "Cygwin" ]]; then
         find ./include/* ./src/* ./test/* -regex '.*\.\(cpp\|h\)' -exec clang-format -style=file -i {} \; 2>/dev/null
     fi
     echo "Run tests"
-    test_output=$(bazel test :all --experimental_enable_runfiles 2>/dev/null | tee /dev/tty)
+    test_output=$(./bazelisk/bazelisk.py test :all --experimental_enable_runfiles 2>/dev/null | tee /dev/tty)
 fi
 
 if [[ $machine == "Linux" ]]; then
@@ -40,7 +40,7 @@ if [[ $machine == "Linux" ]]; then
         echo "Skip Buildifier"
     else
         echo "Run Buildifier"
-        bazel run //:buildifier 2>/dev/null
+        ./bazelisk/bazelisk.py run //:buildifier 2>/dev/null && git submodule foreach git reset --hard
     fi
     if [ -z "$unstaged_changes_source_code" ]; then
         echo "Skip clang format"
@@ -49,7 +49,7 @@ if [[ $machine == "Linux" ]]; then
         find ./include/* ./src/* ./test/* -regex '.*\.\(cpp\|h\)' -exec clang-format -style=file -i {} \; 2>/dev/null
     fi
     echo "Run tests"
-    test_output=$(bazel test :all 2>/dev/null | tee /dev/tty)
+    test_output=$(./bazelisk/bazelisk.py test :all 2>/dev/null | tee /dev/tty)
 fi
 
 if [[ $machine == "Mac" ]]; then
@@ -57,7 +57,7 @@ if [[ $machine == "Mac" ]]; then
         echo "Skip Buildifier"
     else
         echo "Run Buildifier"
-        bazel run //:buildifier 2>/dev/null
+        ./bazelisk/bazelisk.py run //:buildifier 2>/dev/null && git submodule foreach git reset --hard
     fi
     if [ -z "$unstaged_changes_source_code" ]; then
         echo "Skip clang format"
@@ -66,7 +66,7 @@ if [[ $machine == "Mac" ]]; then
         find ./include/* ./src/* ./test/* -type f -print | egrep -i '\.h$|\.cpp$' | xargs clang-format -i -style=file 2>/dev/null
     fi
     echo "Run tests"
-    test_output=$(bazel test :all 2>/dev/null | tee /dev/tty)
+    test_output=$(./bazelisk/bazelisk.py test :all 2>/dev/null | tee /dev/tty)
 fi
 
 if [[ *$machine* == *"UNKNOWN"* ]]; then

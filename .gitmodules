@@ -1,0 +1,4 @@
+[submodule "bazelisk"]
+	path = bazelisk
+	url = https://github.com/bazelbuild/bazelisk.git
+	branch = master

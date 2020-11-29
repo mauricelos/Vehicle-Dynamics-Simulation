@@ -14,9 +14,9 @@ class Transmission
     Transmission(const double drive_train_efficiency, const double final_drive_ratio,
                  const std::vector<double>& transmission_gear_ratios)
         : drive_train_efficiency_(drive_train_efficiency), final_drive_ratio_(final_drive_ratio),
-          transmission_gear_ratios_(transmission_gear_ratios),
-          current_transmission_gear_ratio_(transmission_gear_ratios[0])
+          transmission_gear_ratios_(transmission_gear_ratios)
     {
+        current_transmission_gear_ratio_ = transmission_gear_ratios[0];
     }
     std::uint16_t GetEngineSpeedNextGear() const;
     void SetMaxEngineSpeed(const std::uint16_t max_engine_speed);

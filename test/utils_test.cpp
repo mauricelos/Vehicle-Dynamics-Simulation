@@ -11,9 +11,10 @@ namespace
 class UtilsTest : public ::testing::Test
 {
   public:
-    std::array<char*, 1> temp_args_no_file_paths_{"program_file_name"};
-    std::array<char*, 3> temp_args_{"program_file_name", "path_one", "path_two"};
-    std::array<char*, 4> temp_args_race_{"program_file_name", "-r", "path_one", "path_two"};
+    std::array<char*, 1> temp_args_no_file_paths_{strdup("program_file_name")};
+    std::array<char*, 3> temp_args_{strdup("program_file_name"), strdup("path_one"), strdup("path_two")};
+    std::array<char*, 4> temp_args_race_{strdup("program_file_name"), strdup("-r"), strdup("path_one"),
+                                         strdup("path_two")};
     char* args_no_file_paths_[1] = {temp_args_no_file_paths_[0]};
     char* args_[3] = {temp_args_[0], temp_args_[1], temp_args_[2]};
     char* args_race_[4] = {temp_args_race_[0], temp_args_race_[1], temp_args_race_[2], temp_args_race_[3]};
@@ -55,7 +56,8 @@ TEST_F(UtilsTest, GetYamlFilesFromCurrentDirectoryTest)
 
 TEST_F(UtilsTest, HasRaceCommandLineOptionTest)
 {
-    std::array<char*, 4> temp_alt_args_race{"program_file_name", "--race", "path_one", "path_two"};
+    std::array<char*, 4> temp_alt_args_race{strdup("program_file_name"), strdup("--race"), strdup("path_one"),
+                                            strdup("path_two")};
     char* alt_args_race[4] = {temp_alt_args_race[0], temp_alt_args_race[1], temp_alt_args_race[2],
                               temp_alt_args_race[3]};
 

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z "$(git diff --name-only -- '*.cpp' '*.h' '*.yaml' '*.BUILD' 'BUILD' 'WORKSPACE')" ]; then
+    echo $'\n'"`tput setaf 2`Only non checkable changes detected, skipping checks!`tput sgr0`"$'\n'
+    exit 0
+fi
+
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;
@@ -10,30 +15,56 @@ case "${unameOut}" in
 esac
 
 unstaged_changes=$(git diff --name-only)
+unstaged_changes_source_code=$(git diff --name-only -- '*.cpp' '*.h')
+unstaged_changes_build_files=$(git diff --name-only -- '*.BUILD' 'BUILD' 'WORKSPACE')
 
 if [[ $machine == "MinGw" || $machine == "Cygwin" ]]; then
-    echo "Run Buildifier"
-    bazel build //:buildifier 2>/dev/null && .vscode/windows_scripts/run_buildifier.sh
-    echo "Run clang format"
-    find ./include/* ./src/* ./test/* -regex '.*\.\(cpp\|h\)' -exec clang-format -style=file -i {} \; 2>/dev/null
+    if [ -z "$unstaged_changes_build_files" ]; then
+        echo "Skip Buildifier"
+    else
+        echo "Run Buildifier"
+        bazel build //:buildifier 2>/dev/null && .vscode/windows_scripts/run_buildifier.sh
+    fi
+    if [ -z "$unstaged_changes_source_code" ]; then
+        echo "Skip clang format"
+    else
+        echo "Run clang format"
+        find ./include/* ./src/* ./test/* -regex '.*\.\(cpp\|h\)' -exec clang-format -style=file -i {} \; 2>/dev/null
+    fi
     echo "Run tests"
     test_output=$(bazel test :all --experimental_enable_runfiles 2>/dev/null | tee /dev/tty)
 fi
 
 if [[ $machine == "Linux" ]]; then
-    echo "Run Buildifier"
-    bazel run //:buildifier 2>/dev/null
-    echo "Run clang format"
-    find ./include/* ./src/* ./test/* -regex '.*\.\(cpp\|h\)' -exec clang-format -style=file -i {} \; 2>/dev/null
+    if [ -z "$unstaged_changes_build_files" ]; then
+        echo "Skip Buildifier"
+    else
+        echo "Run Buildifier"
+        bazel run //:buildifier 2>/dev/null
+    fi
+    if [ -z "$unstaged_changes_source_code" ]; then
+        echo "Skip clang format"
+    else
+        echo "Run clang format"
+        find ./include/* ./src/* ./test/* -regex '.*\.\(cpp\|h\)' -exec clang-format -style=file -i {} \; 2>/dev/null
+    fi
     echo "Run tests"
     test_output=$(bazel test :all 2>/dev/null | tee /dev/tty)
 fi
 
 if [[ $machine == "Mac" ]]; then
-    echo "Run Buildifier"
-    bazel run //:buildifier 2>/dev/null
-    echo "Run clang format"
-    find ./include/* ./src/* ./test/* -type f -print | egrep -i '\.h$|\.cpp$' | xargs clang-format -i -style=file 2>/dev/null
+    if [ -z "$unstaged_changes_build_files" ]; then
+        echo "Skip Buildifier"
+    else
+        echo "Run Buildifier"
+        bazel run //:buildifier 2>/dev/null
+    fi
+    if [ -z "$unstaged_changes_source_code" ]; then
+        echo "Skip clang format"
+    else
+        echo "Run clang format"
+        find ./include/* ./src/* ./test/* -type f -print | egrep -i '\.h$|\.cpp$' | xargs clang-format -i -style=file 2>/dev/null
+    fi
     echo "Run tests"
     test_output=$(bazel test :all 2>/dev/null | tee /dev/tty)
 fi

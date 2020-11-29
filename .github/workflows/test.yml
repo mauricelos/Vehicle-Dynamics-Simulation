@@ -11,11 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Bazel
-        uses: abhinavsingh/setup-bazel@v3
       - name: Use bazel
-        run: bazel --version
+        run: ./bazelisk/bazelisk.py --version
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run tests
-        run: bazel test :all
+        run: ./bazelisk/bazelisk.py test :all

@@ -11,10 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup bazel
-        uses: jwlawson/actions-setup-bazel@v1
-        with:
-          bazel-version: '3.7.1'
+      - name: Setup bazelisk for Bazel builds
+        uses: holvonix-open/setup-bazelisk@v0.6.0
       - name: Use bazel
         run: bazel --version
       - name: Checkout repo

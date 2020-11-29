@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -z "$(git diff --name-only -- '*.cpp' '*.h' '*.yaml' '*.BUILD' 'BUILD' 'WORKSPACE')" ]; then
+if [ -z "$(git diff --cached --name-only -- '*.cpp' '*.h' '*.yaml' '*.BUILD' 'BUILD' 'WORKSPACE')" ]; then
     echo $'\n'"`tput setaf 2`Only non checkable changes detected, skipping checks!`tput sgr0`"$'\n'
     exit 0
 fi
@@ -15,17 +15,17 @@ case "${unameOut}" in
 esac
 
 unstaged_changes=$(git diff --name-only)
-unstaged_changes_source_code=$(git diff --name-only -- '*.cpp' '*.h')
-unstaged_changes_build_files=$(git diff --name-only -- '*.BUILD' 'BUILD' 'WORKSPACE')
+staged_changes_source_code=$(git diff --cached --name-only -- '*.cpp' '*.h')
+staged_changes_build_files=$(git diff --cached --name-only -- '*.BUILD' 'BUILD' 'WORKSPACE')
 
 if [[ $machine == "MinGw" || $machine == "Cygwin" ]]; then
-    if [ -z "$unstaged_changes_build_files" ]; then
+    if [ -z "$staged_changes_build_files" ]; then
         echo "Skip Buildifier"
     else
         echo "Run Buildifier"
         ./bazelisk/bazelisk.py build //:buildifier 2>/dev/null && .vscode/windows_scripts/run_buildifier.sh && git submodule foreach git reset --hard
     fi
-    if [ -z "$unstaged_changes_source_code" ]; then
+    if [ -z "$staged_changes_source_code" ]; then
         echo "Skip clang format"
     else
         echo "Run clang format"
@@ -36,13 +36,13 @@ if [[ $machine == "MinGw" || $machine == "Cygwin" ]]; then
 fi
 
 if [[ $machine == "Linux" ]]; then
-    if [ -z "$unstaged_changes_build_files" ]; then
+    if [ -z "$staged_changes_build_files" ]; then
         echo "Skip Buildifier"
     else
         echo "Run Buildifier"
         ./bazelisk/bazelisk.py run //:buildifier 2>/dev/null && git submodule foreach git reset --hard
     fi
-    if [ -z "$unstaged_changes_source_code" ]; then
+    if [ -z "$staged_changes_source_code" ]; then
         echo "Skip clang format"
     else
         echo "Run clang format"
@@ -53,13 +53,13 @@ if [[ $machine == "Linux" ]]; then
 fi
 
 if [[ $machine == "Mac" ]]; then
-    if [ -z "$unstaged_changes_build_files" ]; then
+    if [ -z "$staged_changes_build_files" ]; then
         echo "Skip Buildifier"
     else
         echo "Run Buildifier"
         ./bazelisk/bazelisk.py run //:buildifier 2>/dev/null && git submodule foreach git reset --hard
     fi
-    if [ -z "$unstaged_changes_source_code" ]; then
+    if [ -z "$staged_changes_source_code" ]; then
         echo "Skip clang format"
     else
         echo "Run clang format"

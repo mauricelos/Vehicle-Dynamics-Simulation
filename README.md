@@ -14,6 +14,7 @@
     - [`Windows developer mode`](https://docs.microsoft.com/de-de/windows/apps/get-started/enable-your-device-for-development) needs to be enabled for experimental symlink support 
     - [`MSVC`](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) (tested with _v142_ toolset, needs C++17 filesystem support)
     - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.4.1_)(_**optional**_, bazelisk can also be used)
+        - [`Python`](https://www.python.org/downloads/windows/) (_**required**_, in case bazelisk is used)
     - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)(_**optional**_, only for commits)
     - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)(_**optional**_, only for commits)
     - [`7-Zip`](https://www.7-zip.de/) (tested with _19.00_)(_**optional**_, only for deployment)
@@ -65,6 +66,7 @@ This project was developed with [`VS Code`](https://code.visualstudio.com/) ther
 Following build [tasks](./.vscode/tasks.json) are available:
 
 - Various build tasks
+- Get latest version of bazelisk
 - Run Buildifier
 - Run clang-format
 - Run vehicle dynamics simulation

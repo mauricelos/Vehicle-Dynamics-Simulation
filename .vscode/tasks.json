@@ -2,6 +2,18 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "get_latest_bazelisk",
+            "type": "shell",
+            "command": "git submodule update --init --recursive && git pull --recurse-submodules && git submodule update --recursive --remote",
+            "windows": {
+                "command": "git submodule update --init --recursive; git pull --recurse-submodules; git submodule update --recursive --remote"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
             "label": "clang_format",
             "type": "shell",
             "windows": {
@@ -21,14 +33,9 @@
         {
             "label": "run_buildifier",
             "type": "shell",
+            "command": "python bazelisk/bazelisk.py run //:buildifier && git submodule foreach git reset --hard",
             "windows": {
-                "command": "./bazelisk/bazelisk.py build //:buildifier; cmd /c .vscode\\windows_scripts\\run_buildifier.bat; git submodule foreach git reset --hard",
-            },
-            "linux": {
-                "command": "./bazelisk/bazelisk.py run //:buildifier && git submodule foreach git reset --hard",
-            },
-            "osx": {
-                "command": "./bazelisk/bazelisk.py run //:buildifier && git submodule foreach git reset --hard",
+                "command": "python bazelisk/bazelisk.py build //:buildifier; cmd /c .vscode\\windows_scripts\\run_buildifier.bat; git submodule foreach git reset --hard",
             },
             "group": {
                 "kind": "build",
@@ -38,7 +45,7 @@
         {
             "label": "clean_all",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py clean",
+            "command": "python bazelisk/bazelisk.py clean",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -47,7 +54,7 @@
         {
             "label": "build_all_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :all",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :all",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -56,7 +63,7 @@
         {
             "label": "build_all_release",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :all",
+            "command": "python bazelisk/bazelisk.py build :all",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -65,7 +72,7 @@
         {
             "label": "build_vehicle_dynamics_simulation",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :vehicle_dynamics_simulation",
+            "command": "python bazelisk/bazelisk.py build :vehicle_dynamics_simulation",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -74,7 +81,7 @@
         {
             "label": "build_vehicle_dynamics_simulation_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_dynamics_simulation",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_dynamics_simulation",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -83,7 +90,7 @@
         {
             "label": "build_vehicle_specification_parser_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :vehicle_specification_parser_test",
+            "command": "python bazelisk/bazelisk.py build :vehicle_specification_parser_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -92,7 +99,7 @@
         {
             "label": "build_vehicle_specification_parser_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_specification_parser_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_specification_parser_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -101,7 +108,7 @@
         {
             "label": "build_engine_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :engine_test",
+            "command": "python bazelisk/bazelisk.py build :engine_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -110,7 +117,7 @@
         {
             "label": "build_engine_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :engine_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :engine_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -119,7 +126,7 @@
         {
             "label": "build_transmission_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :transmission_test",
+            "command": "python bazelisk/bazelisk.py build :transmission_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -128,7 +135,7 @@
         {
             "label": "build_transmission_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :transmission_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :transmission_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -137,7 +144,7 @@
         {
             "label": "build_utils_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :utils_test",
+            "command": "python bazelisk/bazelisk.py build :utils_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -146,7 +153,7 @@
         {
             "label": "build_utils_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :utils_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :utils_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -155,7 +162,7 @@
         {
             "label": "build_vehicle_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :vehicle_test",
+            "command": "python bazelisk/bazelisk.py build :vehicle_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -164,7 +171,7 @@
         {
             "label": "build_vehicle_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -173,7 +180,7 @@
         {
             "label": "build_vehicle_stats_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :vehicle_stats_test",
+            "command": "python bazelisk/bazelisk.py build :vehicle_stats_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -182,7 +189,7 @@
         {
             "label": "build_vehicle_stats_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_stats_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_stats_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -191,7 +198,7 @@
         {
             "label": "build_vehicle_logger_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :vehicle_logger_test",
+            "command": "python bazelisk/bazelisk.py build :vehicle_logger_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -200,7 +207,7 @@
         {
             "label": "build_vehicle_logger_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_logger_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_logger_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -209,7 +216,7 @@
         {
             "label": "build_vehicle_model_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build :vehicle_model_test",
+            "command": "python bazelisk/bazelisk.py build :vehicle_model_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -218,7 +225,7 @@
         {
             "label": "build_vehicle_model_test_debug",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_model_test",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :vehicle_model_test",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -227,14 +234,9 @@
         {
             "label": "run_vehicle_dynamics_simulation",
             "type": "shell",
+            "command": "python bazelisk/bazelisk.py run :vehicle_dynamics_simulation",
             "windows": {
-                "command": "./bazelisk/bazelisk.py run :vehicle_dynamics_simulation --experimental_enable_runfiles"
-            },
-            "linux": {
-                "command": "./bazelisk/bazelisk.py run :vehicle_dynamics_simulation"
-            },
-            "osx": {
-                "command": "./bazelisk/bazelisk.py run :vehicle_dynamics_simulation"
+                "command": "python bazelisk/bazelisk.py run :vehicle_dynamics_simulation --experimental_enable_runfiles"
             },
             "group": {
                 "kind": "build",
@@ -244,14 +246,9 @@
         {
             "label": "test_all",
             "type": "shell",
+            "command": "python bazelisk/bazelisk.py test :all",
             "windows": {
-                "command": "./bazelisk/bazelisk.py test :all --experimental_enable_runfiles"
-            },
-            "linux": {
-                "command": "./bazelisk/bazelisk.py test :all"
-            },
-            "osx": {
-                "command": "./bazelisk/bazelisk.py test :all"
+                "command": "python bazelisk/bazelisk.py test :all --experimental_enable_runfiles"
             },
             "group": {
                 "kind": "test",
@@ -261,14 +258,9 @@
         {
             "label": "test_vehicle_specification_parser_test",
             "type": "shell",
+            "command": "python bazelisk/bazelisk.py run :vehicle_specification_parser_test",
             "windows": {
-                "command": "./bazelisk/bazelisk.py run :vehicle_specification_parser_test --experimental_enable_runfiles"
-            },
-            "linux": {
-                "command": "./bazelisk/bazelisk.py run :vehicle_specification_parser_test"
-            },
-            "osx": {
-                "command": "./bazelisk/bazelisk.py run :vehicle_specification_parser_test"
+                "command": "python bazelisk/bazelisk.py run :vehicle_specification_parser_test --experimental_enable_runfiles"
             },
             "group": {
                 "kind": "test",
@@ -278,7 +270,7 @@
         {
             "label": "test_engine_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py run :engine_test",
+            "command": "python bazelisk/bazelisk.py run :engine_test",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -287,7 +279,7 @@
         {
             "label": "test_transmission_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py run :transmission_test",
+            "command": "python bazelisk/bazelisk.py run :transmission_test",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -296,7 +288,7 @@
         {
             "label": "test_utils_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py run :utils_test",
+            "command": "python bazelisk/bazelisk.py run :utils_test",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -305,7 +297,7 @@
         {
             "label": "test_vehicle_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py run :vehicle_test",
+            "command": "python bazelisk/bazelisk.py run :vehicle_test",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -314,7 +306,7 @@
         {
             "label": "test_vehicle_stats_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py run :vehicle_stats_test",
+            "command": "python bazelisk/bazelisk.py run :vehicle_stats_test",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -323,7 +315,7 @@
         {
             "label": "test_vehicle_logger_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py run :vehicle_logger_test",
+            "command": "python bazelisk/bazelisk.py run :vehicle_logger_test",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -332,7 +324,8 @@
         {
             "label": "test_vehicle_model_test",
             "type": "shell",
-            "command": "./bazelisk/bazelisk.py run :vehicle_model_test",
+            "command": "python bazelisk/bazelisk.py run :vehicle_model_test",
+            
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -342,13 +335,13 @@
             "label": "deploy_executable",
             "type": "shell",
             "windows": {
-                "command": "./bazelisk/bazelisk.py build :vehicle_dynamics_simulation; .vscode/windows_scripts/deploy_executable.bat"
+                "command": "python bazelisk/bazelisk.py build :vehicle_dynamics_simulation; .vscode/windows_scripts/deploy_executable.bat"
             },
             "linux": {
-                "command": "./bazelisk/bazelisk.py build :vehicle_dynamics_simulation && .vscode/linux_scripts/deploy_executable.sh",
+                "command": "python bazelisk/bazelisk.py build :vehicle_dynamics_simulation && .vscode/linux_scripts/deploy_executable.sh",
             },
             "osx": {
-                "command": "./bazelisk/bazelisk.py build :vehicle_dynamics_simulation && .vscode/darwin_scripts/deploy_executable.sh"
+                "command": "python bazelisk/bazelisk.py build :vehicle_dynamics_simulation && .vscode/darwin_scripts/deploy_executable.sh"
             },
             "group": {
                 "kind": "build",

@@ -7,22 +7,22 @@
 - **Linux** (tested with Ubuntu 18.04)
     - [`gcc/g++`](https://gcc.gnu.org/install/) (tested with _8.4.0_, needs C++17 filesystem support)
     - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.7.0_)(_**optional**_, bazelisk can also be used)
-    - [`clang-format`](https://releases.llvm.org/download.html) (tested with _6.0.0_, default Ubuntu 18.04)
-    - [`git`](https://git-scm.com/downloads) (tested with _2.17.1_)
+    - [`clang-format`](https://releases.llvm.org/download.html) (tested with _6.0.0_, default Ubuntu 18.04)(_**optional**_, only for commits)
+    - [`git`](https://git-scm.com/downloads) (tested with _2.17.1_)(_**optional**_, only for commits)
 
 - **Windows** (tested with Windows 10 1903)
     - [`Windows developer mode`](https://docs.microsoft.com/de-de/windows/apps/get-started/enable-your-device-for-development) needs to be enabled for experimental symlink support 
     - [`MSVC`](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) (tested with _v142_ toolset, needs C++17 filesystem support)
     - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.4.1_)(_**optional**_, bazelisk can also be used)
-    - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)
-    - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)
-    - [`7-Zip`](https://www.7-zip.de/) (tested with _19.00_)
+    - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)(_**optional**_, only for commits)
+    - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)(_**optional**_, only for commits)
+    - [`7-Zip`](https://www.7-zip.de/) (tested with _19.00_)(_**optional**_, only for deployment)
 
 - **MacOS** (tested with Catalina 10.15.7 and Big Sur 11.0.1)
     - [`XCode Command Line Tools/Apple clang`](https://developer.apple.com/xcode/resources/) (tested with _12.0.0_, needs C++17 filesystem support)
     - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.7.0_)(_**optional**_, bazelisk can also be used)
-    - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)
-    - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)
+    - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)(_**optional**_, only for commits)
+    - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)(_**optional**_, only for commits)
 ___
 
 ### How to run vehicle dynamics simulation
@@ -79,7 +79,7 @@ A common workflow would be to modify code and run the vehicle dynamics simulatio
 
 ___
 
-### Usage with Bazel commands
+### Usage with Bazel/Bazelisk commands
 
 This project is using bazel/bazelisk as its compiler tool. Bazel can be used to compile/run and test the code as well. Here are some examples for useful bazel commands:
 

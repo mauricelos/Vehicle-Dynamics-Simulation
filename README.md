@@ -23,6 +23,12 @@
     - [`Bazel`](https://docs.bazel.build/versions/master/install.html) (tested with _3.7.0_)(_**optional**_, bazelisk can also be used)
     - [`clang-format`](https://releases.llvm.org/download.html) (tested with _12.0.0_)(_**optional**_, only for commits)
     - [`git`](https://git-scm.com/downloads) (tested with _2.28.0_)(_**optional**_, only for commits)
+
+**Don't forget to clone using:** 
+
+```git clone --recurse-submodules https://github.com/mauricelos/Vehicle-Dynamics-Simulation.git```
+
+If you want to use this repo without a local install of bazel
 ___
 
 ### How to run vehicle dynamics simulation

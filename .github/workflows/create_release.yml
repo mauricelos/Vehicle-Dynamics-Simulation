@@ -58,10 +58,10 @@ jobs:
       - name: Use bazel
         run: ./bazelisk/bazelisk.py --version
       - name: Build binary ubuntu only
-        run: ./bazelisk/bazelisk.py build :vehicle_dynamics_simulation --action_env CC=/usr/bin/gcc-8
+        run: python bazelisk/bazelisk.py build :vehicle_dynamics_simulation --action_env CC=/usr/bin/gcc-8
         if: matrix.config.os == 'ubuntu-latest'
       - name: Build binary
-        run: ./bazelisk/bazelisk.py build :vehicle_dynamics_simulation
+        run: python bazelisk/bazelisk.py build :vehicle_dynamics_simulation
         if: matrix.config.os != 'ubuntu-latest'
       - name: Deploy binaries
         run: ${{ matrix.config.deployment_script }}

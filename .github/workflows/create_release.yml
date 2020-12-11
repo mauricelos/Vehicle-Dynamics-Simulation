@@ -62,6 +62,7 @@ jobs:
         if: matrix.config.os == 'ubuntu-latest'
       - name: Build binary
         run: ./bazelisk/bazelisk.py build :vehicle_dynamics_simulation
+        if: matrix.config.os != 'ubuntu-latest'
       - name: Deploy binaries
         run: ${{ matrix.config.deployment_script }}
       - name: Upload release assets

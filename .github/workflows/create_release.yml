@@ -41,7 +41,7 @@ jobs:
             deployment_script: bash .vscode/linux_scripts/deploy_executable.sh
             os_name: linux
           - os: macos-latest
-            deployment_script: pwd && bash .vscode/darwin_scripts/deploy_executable_github_actions.sh
+            deployment_script: sudo bash .vscode/darwin_scripts/deploy_executable_github_actions.sh
             os_name: darwin
           - os: windows-latest
             deployment_script: .\.vscode\windows_scripts\deploy_executable.bat

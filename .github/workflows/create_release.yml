@@ -38,10 +38,10 @@ jobs:
       matrix:
         config:
           - os: ubuntu-latest
-            deployment_script: ./.vscode/linux_scripts/deploy_executable.sh
+            deployment_script: bash .vscode/linux_scripts/deploy_executable.sh
             os_name: linux
           - os: macos-latest
-            deployment_script: sudo ./.vscode/darwin_scripts/deploy_executable.sh
+            deployment_script: bash .vscode/darwin_scripts/deploy_executable.sh
             os_name: darwin
           - os: windows-latest
             deployment_script: .\.vscode\windows_scripts\deploy_executable.bat

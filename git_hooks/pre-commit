@@ -70,12 +70,12 @@ if [[ $machine == "Mac" ]]; then
 fi
 
 if [[ *$machine* == *"UNKNOWN"* ]]; then
-    echo $'\n'"`tput setaf 1`Unsupported machine!`tput setaf 1`"$'\n'
+    echo $'\n'"`tput setaf 1`Unsupported machine!`tput sgr0`"$'\n'
     exit 1
 fi
 
 if [[ $test_output == *"FAILED"* ]]; then
-    echo $'\n'"`tput setaf 1`Test failed, abort commit!`tput setaf 1`"$'\n'
+    echo $'\n'"`tput setaf 1`Test failed, abort commit!`tput sgr0`"$'\n'
     exit 1
 fi
 

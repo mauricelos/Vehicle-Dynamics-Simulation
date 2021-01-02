@@ -72,7 +72,7 @@ cc_binary(
     args = [
         "--race",
         "vehicle_specifications/mazda_rx8_8HP70.yaml",
-        "vehicle_specifications/mazda_rx8_8HP70_boosted.yaml",
+        "vehicle_specifications/mazda_rx8.yaml",
     ],
     copts = select({
         "@bazel_tools//src/conditions:windows": ["/std:c++17"],

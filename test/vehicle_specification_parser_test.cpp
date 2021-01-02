@@ -21,8 +21,8 @@ TEST_F(VehicleSpecificationParserTest, ParseVehicleSpecificationCorrectFile)
 
     EXPECT_EQ(vehicle.GetVehicleName(), "Mazda RX-8 R3 8HP70");
     EXPECT_EQ(vehicle.GetEngine().GetMaxEngineSpeed(), 9250);
-    EXPECT_DOUBLE_EQ(vehicle.GetEngine().GetTorqueAtEngineSpeed(1000), 100.0);
-    EXPECT_DOUBLE_EQ(vehicle.GetEngine().GetTorqueAtEngineSpeed(6000), 216.0);
+    EXPECT_DOUBLE_EQ(vehicle.GetEngine().GetTorqueAtEngineSpeed(1000), 97.0);
+    EXPECT_DOUBLE_EQ(vehicle.GetEngine().GetTorqueAtEngineSpeed(6000), 215.4);
     EXPECT_DOUBLE_EQ(vehicle.GetTransmission().GetEngineSpeedNextGear(), 0.0);
     EXPECT_DOUBLE_EQ(vehicle.GetVehicleModel().GetDeltaTime(), 0.01);
     EXPECT_DOUBLE_EQ(vehicle.GetVehicleModel().GetVehicleDrivenDistance(), 0.0);

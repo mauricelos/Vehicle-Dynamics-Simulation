@@ -232,6 +232,24 @@
             },
         },
         {
+            "label": "build_integration_test",
+            "type": "shell",
+            "command": "python bazelisk/bazelisk.py build :integration_test",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "build_integration_test_debug",
+            "type": "shell",
+            "command": "python bazelisk/bazelisk.py build --compilation_mode=dbg :integration_test",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
             "label": "run_vehicle_dynamics_simulation",
             "type": "shell",
             "command": "python bazelisk/bazelisk.py run :vehicle_dynamics_simulation",
@@ -325,6 +343,16 @@
             "label": "test_vehicle_model_test",
             "type": "shell",
             "command": "python bazelisk/bazelisk.py run :vehicle_model_test",
+            
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "test_integration_test",
+            "type": "shell",
+            "command": "python bazelisk/bazelisk.py run :integration_test",
             
             "group": {
                 "kind": "test",

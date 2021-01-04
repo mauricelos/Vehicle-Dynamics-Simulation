@@ -261,3 +261,26 @@ cc_test(
         "@gtest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "integration_test",
+    srcs = ["test/integration_test.cpp"],
+    copts = select({
+        "@bazel_tools//src/conditions:windows": ["/std:c++17"],
+        "//conditions:default": ["-std=c++17"],
+    }),
+    data = glob(["vehicle_specifications/*.yaml"]),
+    linkopts = select({
+        "@bazel_tools//src/conditions:windows": [],
+        "@bazel_tools//src/conditions:darwin": [],
+        "//conditions:default": [
+            "-std=c++17",
+            "-lstdc++fs",
+        ],
+    }),
+    deps = [
+        ":vehicle_dynamics_simulation_lib",
+        ":vehicle_specification_parser",
+        "@gtest//:gtest_main",
+    ],
+)
